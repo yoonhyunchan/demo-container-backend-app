@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'auth-service/**'
-      - '.github/workflows/deploy-frontend.yml'
+      - '.github/workflows/deploy-auth.yml'
 
 env:
   REPOSITORY_NAME : "demoproject/auth-service"
