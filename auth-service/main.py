@@ -7,7 +7,6 @@ import os
 
 app = FastAPI(title="Auth Service")
 
-
 # CORS 설정
 allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
 
