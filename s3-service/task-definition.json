@@ -39,6 +39,7 @@
     "cpu": "512",
     "enableFaultInjection": false,
     "executionRoleArn": "ecsTaskExecutionRole",
+    "taskRoleArn": "Yoon-ECS-Task-Role",
     "family": "yoon-backend-s3-task",
     "memory": "1024",
     "networkMode": "awsvpc",
