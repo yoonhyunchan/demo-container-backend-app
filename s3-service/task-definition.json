@@ -24,7 +24,7 @@
                 },
                 "secretOptions": []
             },
-            "name": "auth",
+            "name": "s3",
             "portMappings": [
                 {
                     "appProtocol": "http",
