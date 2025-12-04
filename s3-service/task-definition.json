@@ -1,0 +1,48 @@
+{
+    "containerDefinitions": [
+        {
+            "cpu": 0,
+            "environment": [
+                {
+                    "name": "ALLOWED_ORIGINS",
+                    "value": "https://www.yooniquespace.cloud"
+                },
+                {
+                    "name": "SECRET_KEY",
+                    "value": "secret"
+                }
+            ],
+            "essential": true,
+            "image": "PLACEHOLDER",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/yoon-backend-s3-task",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "ap-northeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "name": "auth",
+            "portMappings": [
+                {
+                    "appProtocol": "http",
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "name": "auth-8000-tcp",
+                    "protocol": "tcp"
+                }
+            ]
+        }
+    ],
+    "cpu": "512",
+    "enableFaultInjection": false,
+    "executionRoleArn": "ecsTaskExecutionRole",
+    "family": "yoon-backend-s3-task",
+    "memory": "1024",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ]
+}
