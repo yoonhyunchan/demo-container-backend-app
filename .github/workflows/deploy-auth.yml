@@ -43,3 +43,19 @@ jobs:
           docker build -t $REGISTRY/${{ env.REPOSITORY_NAME }}:$IMAGE_TAG .
           docker push $REGISTRY/${{ env.REPOSITORY_NAME }}:$IMAGE_TAG
           echo "image=$REGISTRY/$REPOSITORY_NAME:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: auth-service/task-definition.json
+          container-name: auth
+          image: ${{ steps.build-image.outputs.image }}
+  
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: yoon-backend-auth-task-service
+          cluster: yhc-demoproject-ecs
+          wait-for-service-stability: true
