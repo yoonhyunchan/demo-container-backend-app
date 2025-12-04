@@ -35,7 +35,7 @@ jobs:
         
       - name: Build, tag, and push docker image to Amazon ECR
         id: build-image
-        working-directory: ./auth-service
+        working-directory: ./s3-service
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
@@ -48,7 +48,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: auth-service/task-definition.json
+          task-definition: s3-service/task-definition.json
           container-name: s3
           image: ${{ steps.build-image.outputs.image }}
   
